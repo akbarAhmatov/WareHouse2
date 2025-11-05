@@ -6,34 +6,26 @@ import org.springframework.stereotype.Service;
 public class CalculatorService {
 
     public double calculate(double operand1, double operand2, String operation) {
-        switch (operation) {
-            case "+":
-                return add(operand1, operand2);
-            case "-":
-                return subtract(operand1, operand2);
-            case "×":
-            case "*":
-                return multiply(operand1, operand2);
-            case "÷":
-            case "/":
-                return divide(operand1, operand2);
-            case "%":
-                return percentage(operand1, operand2);
-            default:
-                throw new IllegalArgumentException("Invalid operation: " + operation);
-        }
+        return switch (operation) {
+            case "+" -> add(operand1, operand2);
+            case "-" -> subtract(operand1, operand2);
+            case "×", "*" -> multiply(operand1, operand2);
+            case "÷", "/" -> divide(operand1, operand2);
+            case "%" -> percentage(operand1, operand2);
+            default -> throw new IllegalArgumentException("Invalid operation: " + operation);
+        };
     }
 
     private double add(double a, double b) {
-        return Math.addExact((long) a, (long) b);
+        return a + b;
     }
 
     private double subtract(double a, double b) {
-        return Math.subtractExact((long) a, (long) b);
+        return a - b;
     }
 
     private double multiply(double a, double b) {
-        return Math.multiplyExact((long) a, (long) b);
+        return a * b;
     }
 
     private double divide(double a, double b) {
@@ -44,9 +36,9 @@ public class CalculatorService {
     }
 
     private double percentage(double a, double b) {
-        // Calculate: a - (a * b / 100)
-        double percentValue = Math.multiplyExact((long) a, (long) b) / 100.0;
-        return a - percentValue;
+        // Calculate: a - b (just subtract the number, not percentage)
+        // Example: 555 - 20% means 555 - 20 = 535
+        return a - b;
     }
 
     public double power(double base, double exponent) {

@@ -15,7 +15,7 @@ public class CategoryRepository {
     public List<Category> findAll() {
         return new ArrayList<>(categories.values());
     }
- 
+
     public Optional<Category> findById(Long id) {
         return Optional.ofNullable(categories.get(id));
     }

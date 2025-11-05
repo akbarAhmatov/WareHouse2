@@ -1,4 +1,4 @@
-package com.example.WareHouse2;
+package com.example.WareHouse2.controller;
 
 import com.example.WareHouse2.dto.CalculatorRequest;
 import com.example.WareHouse2.dto.CalculatorResponse;
@@ -11,21 +11,21 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/calculator")
 @RequiredArgsConstructor
 public class CalculatorRestController {
-    
+
     private final CalculatorService calculatorService;
 
     @PostMapping("/calculate")
     public ResponseEntity<CalculatorResponse> calculate(@RequestBody CalculatorRequest request) {
         try {
             double result = calculatorService.calculate(
-                request.getOperand1(),
-                request.getOperand2(),
-                request.getOperation()
+                    request.getOperand1(),
+                    request.getOperand2(),
+                    request.getOperation()
             );
-            
+
             // Round to 8 decimal places to avoid floating point errors
             result = calculatorService.round(result, 8);
-            
+
             return ResponseEntity.ok(CalculatorResponse.success(result));
         } catch (ArithmeticException e) {
             return ResponseEntity.ok(CalculatorResponse.error(e.getMessage()));
@@ -33,7 +33,7 @@ public class CalculatorRestController {
             return ResponseEntity.badRequest().body(CalculatorResponse.error(e.getMessage()));
         } catch (Exception e) {
             return ResponseEntity.internalServerError()
-                .body(CalculatorResponse.error("Calculation error: " + e.getMessage()));
+                    .body(CalculatorResponse.error("Calculation error: " + e.getMessage()));
         }
     }
 

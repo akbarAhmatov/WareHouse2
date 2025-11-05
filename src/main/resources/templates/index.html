@@ -325,8 +325,6 @@
             box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
             transition: all 0.3s ease;
             z-index: 999;
-            display: flex;
-            justify-content: center;
         }
 
         .calc-modal-btn:hover {
@@ -903,6 +901,8 @@
 
         <div class="calc-info">
             💡 Keyboard: Numbers, +, -, *, /, Enter, Esc, Backspace
+            <br>
+            <small style="color: #48bb78; font-weight: bold;">✓ Powered by Java Math Backend</small>
         </div>
     </div>
 </div>
@@ -956,42 +956,40 @@
     }
 
     function calculate() {
-        let result;
         const prev = parseFloat(previousOperand);
         const current = parseFloat(currentOperand);
 
         if (isNaN(prev) || isNaN(current)) return;
 
-        switch (operation) {
-            case '+':
-                result = prev + current;
-                break;
-            case '-':
-                result = prev - current;
-                break;
-            case '×':
-                result = prev * current;
-                break;
-            case '÷':
-                if (current === 0) {
-                    alert("Error: Division by zero");
+        // Call Java backend for calculation
+        fetch('/api/calculator/calculate', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                operand1: prev,
+                operand2: current,
+                operation: operation
+            })
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    currentOperand = data.result.toString();
+                    operation = null;
+                    previousOperand = '';
+                    updateDisplay();
+                } else {
+                    alert('❌ ' + data.error);
                     clearAll();
-                    return;
                 }
-                result = prev / current;
-                break;
-            case '%':
-                result = prev % current;
-                break;
-            default:
-                return;
-        }
-
-        currentOperand = Math.round(result * 100000000) / 100000000;
-        currentOperand = currentOperand.toString();
-        operation = null;
-        previousOperand = '';
-        updateDisplay();
+            })
+            .catch(error => {
+                console.error('Calculation error:', error);
+                alert('❌ Error connecting to server');
+                clearAll();
+            });
     }
 
     function clearAll() {
