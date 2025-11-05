@@ -308,6 +308,242 @@
             gap: 10px;
             margin: 0;
         }
+
+        /* Modal Calculator Styles */
+        .calc-modal-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 2em;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+            transition: all 0.3s ease;
+            z-index: 999;
+            display: flex;
+            justify-content: center;
+        }
+
+        .calc-modal-btn:hover {
+            transform: scale(1.1) rotate(15deg);
+            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.6);
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-calculator {
+            background: white;
+            border-radius: 25px;
+            padding: 30px;
+            width: 90%;
+            max-width: 450px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            position: relative;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: scale(0.8) translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1) translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .modal-title {
+            font-size: 1.8em;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .close-btn {
+            background: #fc8181;
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.5em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .close-btn:hover {
+            background: #f56565;
+            transform: rotate(90deg);
+        }
+
+        .calc-display {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            min-height: 110px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .calc-previous {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.2em;
+            min-height: 30px;
+            text-align: right;
+            word-wrap: break-word;
+        }
+
+        .calc-current {
+            color: white;
+            font-size: 2.5em;
+            font-weight: 600;
+            min-height: 50px;
+            text-align: right;
+            word-wrap: break-word;
+        }
+
+        .calc-buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        .calc-btn {
+            border: none;
+            border-radius: 12px;
+            font-size: 1.4em;
+            font-weight: 600;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .calc-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .calc-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .calc-number {
+            background: #f7fafc;
+            color: #2d3748;
+        }
+
+        .calc-number:hover {
+            background: #edf2f7;
+        }
+
+        .calc-operator {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .calc-operator:hover {
+            background: linear-gradient(135deg, #5568d3 0%, #65408b 100%);
+        }
+
+        .calc-clear {
+            background: #fc8181;
+            color: white;
+        }
+
+        .calc-clear:hover {
+            background: #f56565;
+        }
+
+        .calc-delete {
+            background: #f6ad55;
+            color: white;
+        }
+
+        .calc-delete:hover {
+            background: #ed8936;
+        }
+
+        .calc-equals {
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            color: white;
+            grid-column: span 2;
+        }
+
+        .calc-equals:hover {
+            background: linear-gradient(135deg, #38a169 0%, #2f855a 100%);
+        }
+
+        .calc-info {
+            text-align: center;
+            margin-top: 15px;
+            color: #718096;
+            font-size: 0.85em;
+        }
+
+        @media (max-width: 768px) {
+            .calc-modal-btn {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5em;
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .modal-calculator {
+                padding: 20px;
+            }
+
+            .calc-btn {
+                padding: 15px;
+                font-size: 1.2em;
+            }
+
+            .calc-current {
+                font-size: 2em;
+            }
+        }
     </style>
 </head>
 <body>
@@ -620,5 +856,186 @@
         </div>
     </div>
 </div>
-</body>
-</html>
+
+<!-- Floating Calculator Button -->
+<button class="calc-modal-btn" onclick="openCalculator()" title="Open Calculator">
+    🧮
+</button>
+
+<!-- Modal Calculator -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeCalculator(event)">
+    <div class="modal-calculator" onclick="event.stopPropagation()">
+        <div class="modal-header">
+            <div class="modal-title">🧮 Calculator</div>
+            <button class="close-btn" onclick="closeCalculator()">×</button>
+        </div>
+
+        <div class="calc-display">
+            <div class="calc-previous" id="previousOperand"></div>
+            <div class="calc-current" id="currentOperand">0</div>
+        </div>
+
+        <div class="calc-buttons">
+            <button class="calc-btn calc-clear" onclick="clearAll()">AC</button>
+            <button class="calc-btn calc-delete" onclick="deleteNumber()">DEL</button>
+            <button class="calc-btn calc-operator" onclick="chooseOperation('÷')">÷</button>
+            <button class="calc-btn calc-operator" onclick="chooseOperation('×')">×</button>
+
+            <button class="calc-btn calc-number" onclick="appendNumber('7')">7</button>
+            <button class="calc-btn calc-number" onclick="appendNumber('8')">8</button>
+            <button class="calc-btn calc-number" onclick="appendNumber('9')">9</button>
+            <button class="calc-btn calc-operator" onclick="chooseOperation('-')">−</button>
+
+            <button class="calc-btn calc-number" onclick="appendNumber('4')">4</button>
+            <button class="calc-btn calc-number" onclick="appendNumber('5')">5</button>
+            <button class="calc-btn calc-number" onclick="appendNumber('6')">6</button>
+            <button class="calc-btn calc-operator" onclick="chooseOperation('+')">+</button>
+
+            <button class="calc-btn calc-number" onclick="appendNumber('1')">1</button>
+            <button class="calc-btn calc-number" onclick="appendNumber('2')">2</button>
+            <button class="calc-btn calc-number" onclick="appendNumber('3')">3</button>
+            <button class="calc-btn calc-operator" onclick="chooseOperation('%')">%</button>
+
+            <button class="calc-btn calc-number" onclick="appendNumber('0')">0</button>
+            <button class="calc-btn calc-number" onclick="appendNumber('.')">.</button>
+            <button class="calc-btn calc-equals" onclick="calculate()">=</button>
+        </div>
+
+        <div class="calc-info">
+            💡 Keyboard: Numbers, +, -, *, /, Enter, Esc, Backspace
+        </div>
+    </div>
+</div>
+
+<script>
+    // Calculator Variables
+    let currentOperand = '0';
+    let previousOperand = '';
+    let operation = null;
+
+    // Open/Close Modal
+    function openCalculator() {
+        document.getElementById('modalOverlay').classList.add('active');
+        updateDisplay();
+    }
+
+    function closeCalculator(event) {
+        if (event && event.target !== event.currentTarget) return;
+        document.getElementById('modalOverlay').classList.remove('active');
+    }
+
+    // Calculator Functions
+    function updateDisplay() {
+        document.getElementById('currentOperand').textContent = currentOperand;
+        if (operation) {
+            document.getElementById('previousOperand').textContent = `${previousOperand} ${operation}`;
+        } else {
+            document.getElementById('previousOperand').textContent = previousOperand;
+        }
+    }
+
+    function appendNumber(number) {
+        if (number === '.' && currentOperand.includes('.')) return;
+        if (currentOperand === '0' && number !== '.') {
+            currentOperand = number;
+        } else {
+            currentOperand = currentOperand + number;
+        }
+        updateDisplay();
+    }
+
+    function chooseOperation(op) {
+        if (currentOperand === '') return;
+        if (previousOperand !== '') {
+            calculate();
+        }
+        operation = op;
+        previousOperand = currentOperand;
+        currentOperand = '';
+        updateDisplay();
+    }
+
+    function calculate() {
+        let result;
+        const prev = parseFloat(previousOperand);
+        const current = parseFloat(currentOperand);
+
+        if (isNaN(prev) || isNaN(current)) return;
+
+        switch (operation) {
+            case '+':
+                result = prev + current;
+                break;
+            case '-':
+                result = prev - current;
+                break;
+            case '×':
+                result = prev * current;
+                break;
+            case '÷':
+                if (current === 0) {
+                    alert("Error: Division by zero");
+                    clearAll();
+                    return;
+                }
+                result = prev / current;
+                break;
+            case '%':
+                result = prev % current;
+                break;
+            default:
+                return;
+        }
+
+        currentOperand = Math.round(result * 100000000) / 100000000;
+        currentOperand = currentOperand.toString();
+        operation = null;
+        previousOperand = '';
+        updateDisplay();
+    }
+
+    function clearAll() {
+        currentOperand = '0';
+        previousOperand = '';
+        operation = null;
+        updateDisplay();
+    }
+
+    function deleteNumber() {
+        if (currentOperand === '0') return;
+        currentOperand = currentOperand.slice(0, -1);
+        if (currentOperand === '' || currentOperand === '-') {
+            currentOperand = '0';
+        }
+        updateDisplay();
+    }
+
+    // Keyboard Support
+    document.addEventListener('keydown', function(event) {
+        const modal = document.getElementById('modalOverlay');
+        if (!modal.classList.contains('active')) return;
+
+        if (event.key >= '0' && event.key <= '9') {
+            appendNumber(event.key);
+        } else if (event.key === '.') {
+            appendNumber('.');
+        } else if (event.key === '+' || event.key === '-') {
+            chooseOperation(event.key);
+        } else if (event.key === '*') {
+            chooseOperation('×');
+        } else if (event.key === '/') {
+            event.preventDefault();
+            chooseOperation('÷');
+        } else if (event.key === '%') {
+            chooseOperation('%');
+        } else if (event.key === 'Enter' || event.key === '=') {
+            event.preventDefault();
+            calculate();
+        } else if (event.key === 'Escape') {
+            closeCalculator();
+        } else if (event.key === 'Backspace') {
+            event.preventDefault();
+            deleteNumber();
+        }
+    });
+</script>
