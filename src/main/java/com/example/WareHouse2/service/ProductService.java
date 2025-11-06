@@ -27,10 +27,9 @@ public class ProductService {
         return product;
     }
 
-    public Product save(Product product) {
+    public void save(Product product) {
         Product saved = productRepository.save(product);
         enrichProductWithNames(saved);
-        return saved;
     }
 
     public void deleteById(Long id) {

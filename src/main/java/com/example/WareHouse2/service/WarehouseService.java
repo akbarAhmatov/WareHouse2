@@ -21,8 +21,8 @@ public class WarehouseService {
         return warehouseRepository.findById(id);
     }
 
-    public Warehouse save(Warehouse warehouse) {
-        return warehouseRepository.save(warehouse);
+    public void save(Warehouse warehouse) {
+        warehouseRepository.save(warehouse);
     }
 
     public void deleteById(Long id) {

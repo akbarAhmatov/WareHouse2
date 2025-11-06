@@ -52,7 +52,7 @@ public class ProductController {
         try {
             productService.save(product);
             redirectAttributes.addFlashAttribute("successMessage", 
-                product.getId() == null ? "Product added successfully!" : "Product updated successfully!");
+                product.getId() == null ?  "Product updated successfully!" : "Product added successfully!");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "Error saving product: " + e.getMessage());
         }
