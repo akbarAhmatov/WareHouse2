@@ -1,9 +1,45 @@
+#spring:
+#  application:
+#    name: WareHouse2
+#
+#  datasource:
+#    url: jdbc:postgresql://localhost:5432/warehouse_db
+#    username: postgres
+#    password: akbar_123456789
+#    driver-class-name: org.postgresql.Driver
+#    hikari:
+#      maximum-pool-size: 10
+#      connection-timeout: 30000
+#
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#    show-sql: true
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.PostgreSQLDialect
+#        format_sql: true
+#        jdbc:
+#          lob:
+#            non_contextual_creation: true
+#
+#  sql:
+#    init:
+#      mode: always
+#      continue-on-error: true
+#
+#
+#logging:
+#  level:
+#    org.hibernate.SQL: DEBUG
+#    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+
 spring:
   application:
     name: WareHouse2
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/warehouse_db
+    url: jdbc:postgresql://localhost:5432/warehouse_db?createDatabaseIfNotExist=true
     username: postgres
     password: akbar_123456789
     driver-class-name: org.postgresql.Driver
@@ -29,7 +65,13 @@ spring:
       mode: always
       continue-on-error: true
 
+telegram:
+  bot:
+    token: 7538112762:AAHh1nV_4jfNC9xOom6tL9f77juQjmMPKEA
+    username: iuyvbot
+
 logging:
   level:
     org.hibernate.SQL: DEBUG
     org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.telegram.telegrambots: INFO

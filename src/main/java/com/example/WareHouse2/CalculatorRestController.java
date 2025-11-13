@@ -1,4 +1,4 @@
-package com.example.WareHouse2.controller;
+package com.example.WareHouse2;
 
 import com.example.WareHouse2.dto.CalculatorRequest;
 import com.example.WareHouse2.dto.CalculatorResponse;
@@ -23,7 +23,6 @@ public class CalculatorRestController {
                     request.getOperation()
             );
 
-            // Round to 8 decimal places to avoid floating point errors
             result = calculatorService.round(result, 8);
 
             return ResponseEntity.ok(CalculatorResponse.success(result));

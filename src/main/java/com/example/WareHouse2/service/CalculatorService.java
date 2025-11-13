@@ -21,6 +21,7 @@ public class CalculatorService {
     }
 
     private double subtract(double a, double b) {
+        
         return a - b;
     }
 
@@ -36,9 +37,7 @@ public class CalculatorService {
     }
 
     private double percentage(double a, double b) {
-        // Calculate: a - b (just subtract the number, not percentage)
-        // Example: 555 - 20% means 555 - 20 = 535
-        return a - b;
+   return a - b;
     }
 
     public double power(double base, double exponent) {

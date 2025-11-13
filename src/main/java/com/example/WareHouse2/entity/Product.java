@@ -36,7 +36,7 @@ public class Product {
     @Column(length = 1000)
     private String description;
 
-    // For display purposes (not stored in DB)
+
     @Transient
     private String categoryName;
 

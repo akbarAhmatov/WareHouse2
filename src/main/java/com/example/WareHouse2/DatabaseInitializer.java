@@ -22,18 +22,17 @@ public class DatabaseInitializer {
         try (Connection connection = DriverManager.getConnection(postgresUrl, username, password);
              Statement statement = connection.createStatement()) {
 
-            // Check if database exists
             String checkDbQuery = "SELECT 1 FROM pg_database WHERE datname = '" + dbName + "'";
             var resultSet = statement.executeQuery(checkDbQuery);
 
             if (!resultSet.next()) {
-                // Database doesn't exist, create it
                 String createDbQuery = "CREATE DATABASE " + dbName;
                 statement.executeUpdate(createDbQuery);
                 System.out.println("✅ Database '" + dbName + "' created successfully!");
             } else {
                 System.out.println("✅ Database '" + dbName + "' already exists.");
             }
+
 
         } catch (SQLException e) {
             System.err.println("❌ Error creating database: " + e.getMessage());
