@@ -37,7 +37,7 @@ public class CalculatorService {
     }
 
     private double percentage(double a, double b) {
-   return a - b;
+        return (a * b) / 100;
     }
 
     public double power(double base, double exponent) {
